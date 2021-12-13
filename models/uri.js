@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import uuid from "node-uuid";
+import { v4 } from "uuid";
 
 const uriModal = new Schema(
   {
@@ -13,7 +13,7 @@ const uriModal = new Schema(
     },
     session_id: {
       type: String,
-      default: uuid.v1(),
+      default: v4(),
     },
   },
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
