@@ -7,7 +7,7 @@ const uriModal = new Schema(
       type: String,
       required: true,
     },
-    short_url: {
+    short_uri: {
       type: String,
       required: true,
     },
