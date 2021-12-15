@@ -7,16 +7,21 @@ import Button from "./Button";
 import Label from "./Label";
 import Icon from "./Icon";
 
-export default function Card({ onSubmit, qrCodeUrl, encryptedUrl, isWaiting }) {
+export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
   const [givenUrl, setGivenUrl] = useState("");
   const [invalidUrl, setInvalidUrl] = useState(false);
+  const [isWaiting, setIsWaiting] = useState(false);
 
   useEffect(() => {
     setGivenUrl("");
+    if (qrCodeUrl !== null) {
+      setIsWaiting(false);
+    }
   }, [qrCodeUrl]);
 
   function onSubmitLocal(e) {
     e.preventDefault();
+    setIsWaiting(true);
     const result = validateUrl(givenUrl);
 
     if (result) {

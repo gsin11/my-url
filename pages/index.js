@@ -9,19 +9,26 @@ const APP_BASE_URL = process.env.baseUrl;
 
 export default function Home() {
   const [qrCode, setQrCode] = useState(null);
-  const [isWaiting, setIsWaiting] = useState(false);
   const [encryptedUrl, setEncryptedUrl] = useState(null);
+  const [myList, setMyList] = useState([]);
+
+  async function getMyList(sessionId) {
+    const results = await fetch(`/api/list/${sessionId}`);
+    return results.json();
+  }
 
   useEffect(() => {
     const existingVal = window.localStorage.getItem("uri:session_id");
     if (existingVal === null) {
       window.localStorage.setItem("uri:session_id", v4());
+    } else {
+      const promise = getMyList(existingVal);
+      promise.then((data) => console.log(data));
     }
   }, []);
 
   function onSubmit(givenUrl) {
     try {
-      setIsWaiting(true);
       fetch("/api/uri", {
         method: "POST",
         headers: {
@@ -49,8 +56,6 @@ export default function Home() {
         });
     } catch (error) {
       console.error(error);
-    } finally {
-      setIsWaiting(false);
     }
   }
 
@@ -63,7 +68,6 @@ export default function Home() {
         qrCodeUrl={qrCode}
         onSubmit={onSubmit}
         encryptedUrl={encryptedUrl}
-        isWaiting={isWaiting}
       />
     </Layout>
   );

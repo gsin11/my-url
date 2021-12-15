@@ -4,10 +4,10 @@ import Uri from "../../../models/uri";
 async function handler(req, res) {
   if (req.method === "GET") {
     try {
-      const { short_uri } = req.query;
-      const result = await Uri.findOne({ short_uri });
+      const { session_id } = req.query;
+      const results = await Uri.find({ session_id });
 
-      res.status(200).send(result || {});
+      res.status(200).send(results || []);
     } catch (error) {
       res.status(500).send(error.message);
     }
