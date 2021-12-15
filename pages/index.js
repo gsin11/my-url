@@ -50,9 +50,7 @@ export default function Home() {
     } catch (error) {
       console.error(error);
     } finally {
-      setTimeout(() => {
-        setIsWaiting(false);
-      }, 2000);
+      setIsWaiting(false);
     }
   }
 

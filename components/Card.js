@@ -71,7 +71,7 @@ export default function Card({ onSubmit, qrCodeUrl, encryptedUrl, isWaiting }) {
             type="submit"
             className="mt-5 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Make Small!
+            {isWaiting && <Icon type="loader" w="w-6" h="h-6" />} Make Small!
           </Button>
         </form>
         {qrCodeUrl && (
