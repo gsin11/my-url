@@ -5,6 +5,7 @@ module.exports = {
   env: {
     mongodburl,
     baseUrl,
+    API_SECRET_KEY: process.env.API_SECRET_KEY,
   },
   reactStrictMode: true,
 };
