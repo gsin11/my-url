@@ -1,8 +1,20 @@
 import React from "react";
 
-export default function Button({ type, className, children }) {
+export default function Button({
+  type,
+  className,
+  isDisabled,
+  children,
+  onClick,
+  ariaLabel,
+}) {
   return (
-    <button type={type} className={className}>
+    <button
+      type={isDisabled ? "button" : type}
+      className={className}
+      onClick={onClick}
+      aria-label={ariaLabel}
+    >
       {children}
     </button>
   );

@@ -21,17 +21,9 @@ const getShortLink = async () => {
 };
 
 const handler = async (req, res) => {
-  if (req.method === "GET") {
-    const uris = await Uri.find({});
-    try {
-      res.status(200).json({ success: true, data: uris });
-    } catch (error) {
-      return res.status(500).send(error.message);
-    }
-  } else if (req.method === "POST") {
+  if (req.method === "POST") {
     try {
       const { uri, session_id } = req.body;
-
       const shortLink = await getShortLink();
 
       const uriObj = new Uri({

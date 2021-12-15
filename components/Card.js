@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
+import { validateUrl, copyToClipboard } from "../libs/utils";
 import Input from "./Input";
 import Button from "./Button";
 import Label from "./Label";
 import Icon from "./Icon";
 
-function validateUrl(url) {
-  const expression =
-    /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-  const regex = new RegExp(expression);
-  return !url.match(regex);
-}
-
-export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
+export default function Card({ onSubmit, qrCodeUrl, encryptedUrl, isWaiting }) {
   const [givenUrl, setGivenUrl] = useState("");
   const [invalidUrl, setInvalidUrl] = useState(false);
+
+  useEffect(() => {
+    setGivenUrl("");
+  }, [qrCodeUrl]);
 
   function onSubmitLocal(e) {
     e.preventDefault();
@@ -50,13 +48,19 @@ export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
               isError={invalidUrl}
             />
             {encryptedUrl && (
-              <p className="mt-5 text-center">
-                <span className="text-blue-600 dark:text-blue-500">
-                  {encryptedUrl}
-                </span>{" "}
+              <p className="mt-5 text-center flex justify-between">
+                <input
+                  id="uri"
+                  className="border-0 outline-none w-full"
+                  type="text"
+                  value={encryptedUrl}
+                  readOnly
+                />
                 <Button
                   type="button"
                   className="text-blue-600 hover:underline dark:text-blue-500"
+                  onClick={copyToClipboard}
+                  ariaLabel="Click to copy"
                 >
                   <Icon type="copy" w="w-6" h="h-6" />
                 </Button>
@@ -76,7 +80,7 @@ export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
           </p>
         )}
       </div>
-      <ul className="mt-5 ml-5 text-white text-lg">
+      <ul className="mt-5 ml-5 dark:text-white text-lg">
         <li className="mb-2">
           <Icon type="check" w="w-6" h="h-6" /> Free to use
         </li>
