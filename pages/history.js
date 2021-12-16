@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 
 export default function History({ BASE_URL }) {
   const [myList, setMyList] = useState([]);
+  const [isWaiting, setIsWaiting] = useState(false);
 
   async function getMyList(sessionId) {
     const results = await fetch(`/api/list/${sessionId}`);
@@ -15,8 +16,12 @@ export default function History({ BASE_URL }) {
   useEffect(() => {
     const existingVal = window.localStorage.getItem("uri:session_id");
     if (existingVal !== null) {
+      setIsWaiting(true);
       const promise = getMyList(existingVal);
-      promise.then((data) => setMyList(data));
+      promise.then((data) => {
+        setMyList(data);
+        setIsWaiting(false);
+      });
     }
   }, []);
 
@@ -30,6 +35,7 @@ export default function History({ BASE_URL }) {
           <a className="text-blue-600">Home</a>
         </Link>
       </ul>
+      {isWaiting && <p>Loading...</p>}
       {myList && (
         <ul>
           {myList.map((obj) => (
@@ -44,6 +50,7 @@ export default function History({ BASE_URL }) {
           ))}
         </ul>
       )}
+      {myList.length === 0 && !isWaiting && <p>No results found!</p>}
     </Layout>
   );
 }
