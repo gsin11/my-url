@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { v4 } from "uuid";
 import QRCode from "qrcode";
 
@@ -10,20 +11,11 @@ const APP_BASE_URL = process.env.baseUrl;
 export default function Home() {
   const [qrCode, setQrCode] = useState(null);
   const [encryptedUrl, setEncryptedUrl] = useState(null);
-  const [myList, setMyList] = useState([]);
-
-  async function getMyList(sessionId) {
-    const results = await fetch(`/api/list/${sessionId}`);
-    return results.json();
-  }
 
   useEffect(() => {
     const existingVal = window.localStorage.getItem("uri:session_id");
     if (existingVal === null) {
       window.localStorage.setItem("uri:session_id", v4());
-    } else {
-      const promise = getMyList(existingVal);
-      promise.then((data) => console.log(data));
     }
   }, []);
 
@@ -64,6 +56,11 @@ export default function Home() {
       <h1 className="mb-5 dark:text-white text-black text-2xl">
         Welcome to MyShortURL
       </h1>
+      <ul className="mb-3">
+        <Link href="/history">
+          <a className="text-blue-600">History</a>
+        </Link>
+      </ul>
       <Card
         qrCodeUrl={qrCode}
         onSubmit={onSubmit}
