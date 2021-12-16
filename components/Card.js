@@ -14,9 +14,7 @@ export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
 
   useEffect(() => {
     setGivenUrl("");
-    if (qrCodeUrl !== null) {
-      setIsWaiting(false);
-    }
+    setIsWaiting(false);
   }, [qrCodeUrl]);
 
   function onSubmitLocal(e) {
@@ -26,6 +24,7 @@ export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
 
     if (result) {
       setInvalidUrl(true);
+      setIsWaiting(false);
     } else {
       setInvalidUrl(false);
       onSubmit(givenUrl);
@@ -51,6 +50,7 @@ export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
               onChange={(e) => setGivenUrl(e.target.value)}
               isRequired
               isError={invalidUrl}
+              errorMessage="Invalid URL"
             />
             {encryptedUrl && (
               <p className="mt-5 text-center flex justify-between">
