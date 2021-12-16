@@ -32,7 +32,7 @@ export default function History({ BASE_URL }) {
       </h1>
       <ul className="mb-5">
         <Link href="/">
-          <a className="text-blue-600">Home</a>
+          <a className="text-blue-600 dark:text-white">Home</a>
         </Link>
       </ul>
       {isWaiting && <p>Loading...</p>}

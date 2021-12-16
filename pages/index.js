@@ -58,7 +58,7 @@ export default function Home() {
       </h1>
       <ul className="mb-3">
         <Link href="/history">
-          <a className="text-blue-600">History</a>
+          <a className="text-blue-600 dark:text-white">History</a>
         </Link>
       </ul>
       <Card
