@@ -4,9 +4,10 @@ import Link from "next/link";
 
 import Layout from "../components/Layout";
 
-export default function History({ BASE_URL }) {
+export default function History() {
   const [myList, setMyList] = useState([]);
   const [isWaiting, setIsWaiting] = useState(false);
+  const baseURL = process.env.baseUrl;
 
   async function getMyList(sessionId) {
     const results = await fetch(`/api/list/${sessionId}`);
@@ -42,10 +43,10 @@ export default function History({ BASE_URL }) {
             <li key={obj._id}>
               <a
                 className="text-blue-600"
-                href={`${BASE_URL}${obj.short_uri}`}
+                href={`${baseURL}${obj.short_uri}`}
                 rel="noreferrer"
                 target="_blank"
-              >{`${BASE_URL}${obj.short_uri}`}</a>
+              >{`${baseURL}${obj.short_uri}`}</a>
             </li>
           ))}
         </ul>
@@ -53,12 +54,4 @@ export default function History({ BASE_URL }) {
       {myList.length === 0 && !isWaiting && <p>No results found!</p>}
     </Layout>
   );
-}
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      BASE_URL: process.env.BASE_URL,
-    },
-  };
 }
