@@ -34,7 +34,9 @@ export default function History() {
       </h1>
       <ul className="mb-5">
         <Link href="/">
-          <a className="text-blue-600 dark:text-white">Home</a>
+          <a className="text-blue-600 dark:text-blue-100 hover:underline">
+            Home
+          </a>
         </Link>
       </ul>
       {isWaiting && <p>Loading...</p>}
@@ -57,15 +59,6 @@ export default function History() {
         </ul>
       )}
       {myList.length === 0 && !isWaiting && <p>No results found!</p>}
-      <a
-        href="https://github.com/gsin11/my-url"
-        target="_blank"
-        rel="noreferrer"
-        className="mt-3"
-        title="Source Code"
-      >
-        <Icon type="github" />
-      </a>
     </Layout>
   );
 }

@@ -41,7 +41,7 @@ export default function Icon({ type, h = "h-4", w = "w-4", className }) {
     case "github":
       return (
         <svg
-          className="h-8 w-8 text-blue-500 dark:text-blue-100"
+          className="h-8 w-8 text-blue-500 dark:text-blue-100 hover:opacity-75"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

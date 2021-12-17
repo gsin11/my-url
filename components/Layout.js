@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Icon from "./Icon";
 
 export default function Layout({ children, title }) {
   return (
@@ -37,6 +38,15 @@ export default function Layout({ children, title }) {
       </Head>
       <div className="flex justify-center place-items-center h-screen bg-slate-50 dark:bg-slate-600 flex-col px-5">
         {children}
+        <a
+          href="https://github.com/gsin11/my-url"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 "
+          title="Source Code"
+        >
+          <Icon type="github" />
+        </a>
       </div>
     </>
   );

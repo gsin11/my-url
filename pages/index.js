@@ -5,7 +5,6 @@ import QRCode from "qrcode";
 
 import Layout from "../components/Layout";
 import Card from "../components/Card";
-import Icon from "../components/Icon";
 
 const APP_BASE_URL = process.env.baseUrl;
 
@@ -59,7 +58,9 @@ export default function Home() {
       </h1>
       <ul className="mb-3">
         <Link href="/history">
-          <a className="text-blue-600 dark:text-white">History</a>
+          <a className="text-blue-600 dark:text-blue-100 hover:underline">
+            History
+          </a>
         </Link>
       </ul>
       <Card
@@ -67,15 +68,6 @@ export default function Home() {
         onSubmit={onSubmit}
         encryptedUrl={encryptedUrl}
       />
-      <a
-        href="https://github.com/gsin11/my-url"
-        target="_blank"
-        rel="noreferrer"
-        className="mt-3"
-        title="Source Code"
-      >
-        <Icon type="github" />
-      </a>
     </Layout>
   );
 }
