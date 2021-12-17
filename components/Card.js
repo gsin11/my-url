@@ -32,7 +32,7 @@ export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
   }
 
   return (
-    <div className="w-96 mx-auto">
+    <div className="w-full md:w-96 mx-auto">
       <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form onSubmit={onSubmitLocal}>
           <div>

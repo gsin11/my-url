@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import Layout from "../components/Layout";
 import Icon from "../components/Icon";
+import Button from "../components/Button";
 
 export default function History() {
   const [myList, setMyList] = useState([]);
@@ -39,15 +40,19 @@ export default function History() {
       </ul>
       {isWaiting && <p>Loading...</p>}
       {myList && (
-        <ul>
+        <ul className="mx-auto w-full px-5 md:w-96">
           {myList.map((obj) => (
-            <li key={obj._id}>
+            <li className="list-disc mb-2" key={obj._id}>
               <a
-                className="text-blue-600"
+                className="text-blue-600 hover:underline"
                 href={`${baseURL}${obj.short_uri}`}
                 rel="noreferrer"
                 target="_blank"
-              >{`${baseURL}${obj.short_uri}`}</a>
+              >
+                {`${baseURL}${obj.short_uri}`}
+              </a>{" "}
+              <Icon type="ext-link" className="text-blue-600" />
+              <p className="text-xs truncate">{obj.uri}</p>
             </li>
           ))}
         </ul>
