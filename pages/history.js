@@ -45,20 +45,25 @@ export default function History() {
           {myList.map((obj) => (
             <li className="list-disc mb-2" key={obj._id}>
               <a
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline dark:text-blue-300"
                 href={`${baseURL}${obj.short_uri}`}
                 rel="noreferrer"
                 target="_blank"
               >
                 {`${baseURL}${obj.short_uri}`}
               </a>{" "}
-              <Icon type="ext-link" className="text-blue-600" />
-              <p className="text-xs truncate">{obj.uri}</p>
+              <Icon
+                type="ext-link"
+                className="text-blue-600 dark:text-blue-400"
+              />
+              <p className="text-xs truncate dark:text-gray-300">{obj.uri}</p>
             </li>
           ))}
         </ul>
       )}
-      {myList.length === 0 && !isWaiting && <p>No results found!</p>}
+      {myList.length === 0 && !isWaiting && (
+        <p className="dark:text-red-300">No results found!</p>
+      )}
     </Layout>
   );
 }
