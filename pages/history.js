@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import Layout from "../components/Layout";
+import Icon from "../components/Icon";
 
 export default function History() {
   const [myList, setMyList] = useState([]);
@@ -52,6 +53,15 @@ export default function History() {
         </ul>
       )}
       {myList.length === 0 && !isWaiting && <p>No results found!</p>}
+      <a
+        href="https://github.com/gsin11/my-url"
+        target="_blank"
+        rel="noreferrer"
+        className="mt-3"
+        title="Source Code"
+      >
+        <Icon type="github" />
+      </a>
     </Layout>
   );
 }
