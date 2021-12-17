@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import Layout from "../components/Layout";
 import Icon from "../components/Icon";
-import Button from "../components/Button";
 
 export default function History() {
   const [myList, setMyList] = useState([]);
@@ -29,7 +28,7 @@ export default function History() {
   }, []);
 
   return (
-    <Layout>
+    <Layout title="History">
       <h1 className="mb-5 dark:text-white text-black text-2xl">
         Welcome to MyShortURL
       </h1>

@@ -53,7 +53,7 @@ export default function Home() {
   }
 
   return (
-    <Layout>
+    <Layout title="shorten the long URL into a tiny URL">
       <h1 className="mb-5 dark:text-white text-black text-2xl">
         Welcome to MyShortURL
       </h1>
