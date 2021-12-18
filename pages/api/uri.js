@@ -2,7 +2,7 @@ import connectDB from "../../middleware/mongodb";
 import Uri from "../../models/uri";
 import { v4 } from "uuid";
 
-const uniqueLink = () => v4().split("-")[0];
+const uniqueLink = () => v4().split("-")[0].substring(0, 4);
 
 const getShortLink = async () => {
   let found = false;
