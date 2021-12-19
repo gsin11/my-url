@@ -6,6 +6,14 @@ import Input from "./Input";
 import Button from "./Button";
 import Label from "./Label";
 import Icon from "./Icon";
+import List from "./List";
+
+const features = [
+  "Free to use",
+  "Easy Link Shortening",
+  "Full Link History",
+  "Auto delete in 30 days",
+];
 
 export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
   const [givenUrl, setGivenUrl] = useState("");
@@ -85,20 +93,7 @@ export default function Card({ onSubmit, qrCodeUrl, encryptedUrl }) {
           </p>
         )}
       </div>
-      <ul className="mt-5 ml-5 dark:text-white text-lg">
-        <li className="mb-2">
-          <Icon type="check" w="w-6" h="h-6" /> Free to use
-        </li>
-        <li className="mb-2">
-          <Icon type="check" w="w-6" h="h-6" /> Easy Link Shortening
-        </li>
-        <li className="mb-2">
-          <Icon type="check" w="w-6" h="h-6" /> Full Link History
-        </li>
-        <li className="mb-2">
-          <Icon type="check" w="w-6" h="h-6" /> Auto delete in 30 days
-        </li>
-      </ul>
+      <List items={features} />
     </div>
   );
 }
